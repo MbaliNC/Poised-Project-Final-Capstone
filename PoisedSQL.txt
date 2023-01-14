@@ -1,0 +1,101 @@
+Create database if not exists Poised_db;
+
+use Poised_db;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+create table ArchitectInfo_Table (
+id int NOT NULL,
+project_number int(100),
+name varchar(100),
+surname varchar(100),
+telephoneNumber varchar(20),
+emailAddress varchar(50),
+physicalAddress varchar(100),
+Primary Key (id)
+);
+
+create table CustomerInfo_Table (
+id int NOT NULL,
+projectNum int(100),
+name varchar(100),
+surname varchar(100),
+telephoneNumber varchar(20),
+emailAddress varchar(50),
+physicalAddress varchar(100),
+Primary Key (id)
+);
+
+create table ProjManagerInfo_Table (
+id int NOT NULL,
+projectNum int(100),
+name varchar(100),
+surname varchar(100),
+telephoneNumber varchar(20),
+emailAddress varchar(50),
+physicalAddress varchar(100),
+Primary Key (id)
+);
+
+create table StuctEngineerInfo_Table (
+id int NOT NULL,
+project_number int(100),
+name varchar(100),
+surname varchar(100),
+telephoneNumber varchar(20),
+emailAddress varchar(50),
+physicalAddress varchar(100),
+Primary Key (id)
+);
+
+create table ProjectsInfo_Table (
+projectNum int NOT NULL,
+projectName varchar(100),
+buildingAddress varchar(100),
+buildingType varchar(100),
+deadline date,
+projectComplete varchar(3),
+finalizedDate date,
+customerFee float,
+totalAmountToDate float,
+ERFNumber int(20),
+architectID int,
+customerID int,
+projManagerID int,
+structEngineerID int,
+Primary Key (projectNum),
+Foreign Key (architectID) references ArchitectInfo_Table(id),
+Foreign Key (customerID) references CustomerInfo_Table(id),
+Foreign Key (projManagerID) references ProjManagerInfo_Table(id),
+Foreign Key (structEngineerID) references StructEngineerInfo_Table(id)
+);
+
+insert into ArchitectInfo_Table
+values ('101', '1', 'Serena', 'Williams', '078 433 2348', 'serena@gmail.com', '78 Oak Avenue');
+
+insert into ArchitectInfo_Table
+values ('102', '2', 'Jorja', 'Smith', '084 423 9612', 'jorja@gmail.com', '50 Rose Street');
+
+insert into CustomerInfo_Table
+values ('49', '3', 'Tom', 'Hardy', '075 356 9128', 'tomh@gmail.com', '11 Eastwood Road');
+
+insert into CustomerInfo_Table
+values (50, 3, 'Tom', 'Hardy', '075 356 9128', 'tomh@gmail.com', '11 Eastwood Road');
+
+insert into ProjManagerInfo_Table
+values ('9', '4', 'Naomi', 'Campbell', '083 273 5933', 'naomic@gmail.com', '11 Vibe Street');
+
+insert into ProjManagerInfo_Table
+values ('10', '5', 'Halle', 'Berry', '083 538 3258', 'halle@gmail.com', '2 Primrose Street');
+
+insert into StructEngineerInfo_Table
+values ('99', '6', 'Jade', 'Thorton', '082 439 9445', 'jadet@gmail.com', '42 Flamingo Avenue');
+
+insert into StructEngineer_Table
+values ('100', '7', 'Trevor', 'Noah', '073 23 9216', 'trevor@gmail.com', '56 Treadway Road');
+
+insert into ProjectsInfo_Table
+values ('1', 'Jolie Mansions', '15 Maroon Grove', 'House', '2022-12-20', 'No', NULL, 1000000, 0, 1234, 101, 49, 9, 99);
+
+insert into ProjectsInfo_Table
+values ('2', 'Coleman Apartments', '45 Jupiter Avenue', 'Apartments', '2022-12-22', 'No', NULL, 5000000, 0, 4567, 102, 50, 10, 100);
